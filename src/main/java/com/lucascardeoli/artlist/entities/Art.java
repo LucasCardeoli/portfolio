@@ -2,6 +2,7 @@ package com.lucascardeoli.artlist.entities;
 
 import java.util.Objects;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,7 +20,9 @@ public class Art {
 		private String title;
 		private String genre;
 		private String imgUrl;
+		@Column(columnDefinition = "TEXT")
 		private String shortDescription;
+		@Column(columnDefinition = "TEXT")
 		private String longDescription;
 		
 		
