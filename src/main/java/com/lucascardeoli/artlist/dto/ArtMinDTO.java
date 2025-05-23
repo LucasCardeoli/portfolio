@@ -1,6 +1,7 @@
 package com.lucascardeoli.artlist.dto;
 
 import com.lucascardeoli.artlist.entities.Art;
+import com.lucascardeoli.artlist.projections.ArtMinProjection;
 
 public class ArtMinDTO {
 	private long id;
@@ -19,6 +20,14 @@ public class ArtMinDTO {
 		this.imgUrl = entity.getImgUrl();
 		this.shortDescription = entity.getShortDescription();
 	}
+	
+	public ArtMinDTO(ArtMinProjection projection) {
+		this.id = projection.getId();
+		this.title = projection.getTitle();
+		this.imgUrl = projection.getImgUrl();
+		this.shortDescription = projection.getShortDescription();
+	}
+
 
 	public long getId() {
 		return id;

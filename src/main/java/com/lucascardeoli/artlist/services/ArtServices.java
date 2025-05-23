@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.lucascardeoli.artlist.dto.ArtDTO;
 import com.lucascardeoli.artlist.dto.ArtMinDTO;
 import com.lucascardeoli.artlist.entities.Art;
+import com.lucascardeoli.artlist.projections.ArtMinProjection;
 import com.lucascardeoli.artlist.repositories.ArtRepository;
 
 @Service
@@ -26,6 +27,12 @@ public class ArtServices {
 	@Transactional(readOnly = true)
 	public List<ArtMinDTO> findAll(){
 		List<Art> result = artRepository.findAll();
+		return result.stream().map(x-> new ArtMinDTO(x)).toList();
+	}
+	
+	@Transactional(readOnly = true)
+	public List<ArtMinDTO> findByList(Long ListId){
+		List<ArtMinProjection> result = artRepository.searchByList(ListId);
 		return result.stream().map(x-> new ArtMinDTO(x)).toList();
 	}
 }
