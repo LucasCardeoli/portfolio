@@ -23,7 +23,7 @@ public class ArtServices {
 		Art result = artRepository.findById(id).get();
 		return new ArtDTO(result);
 	}
-	@Transactional
+	@Transactional(readOnly = true)
 	public List<ArtMinDTO> findAll(){
 		List<Art> result = artRepository.findAll();
 		return result.stream().map(x-> new ArtMinDTO(x)).toList();

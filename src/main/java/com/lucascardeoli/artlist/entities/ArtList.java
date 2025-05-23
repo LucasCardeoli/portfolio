@@ -60,4 +60,5 @@ public class ArtList {
 		ArtList other = (ArtList) obj;
 		return id == other.id;
 	}
+
 }
