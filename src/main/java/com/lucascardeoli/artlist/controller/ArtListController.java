@@ -5,11 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lucascardeoli.artlist.dto.ArtListDTO;
 import com.lucascardeoli.artlist.dto.ArtMinDTO;
+import com.lucascardeoli.artlist.dto.ReplacementDTO;
 import com.lucascardeoli.artlist.services.ArtListServices;
 import com.lucascardeoli.artlist.services.ArtServices;
 
@@ -32,9 +35,15 @@ public class ArtListController {
 	}
 	
 	@GetMapping(value ="/{listId}/arts")
-	public List<ArtMinDTO> findByList( @PathVariable Long listId){
+	public List<ArtMinDTO> findByList(@PathVariable Long listId){
 	List<ArtMinDTO> result = artServices.findByList(listId);
 	return result;
 	}
+	
+	@PostMapping(value ="/{listId}/replacement")
+	public void move(@PathVariable Long listId, @RequestBody ReplacementDTO body){
+		artListServices.move(listId, body.getSourceIndex(), body.getDestinationIndex());
+	}
+	
 	
 }
